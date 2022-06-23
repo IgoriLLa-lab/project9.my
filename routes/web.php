@@ -1,5 +1,7 @@
 <?php
 
+use App\Http\Controllers\ChapterTwoController;
+use App\Http\Controllers\IndexController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -13,7 +15,17 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('/', function () {
-    return view('test');
+Route::get('test', [IndexController::class, 'form']);
+Route::post('test', [IndexController::class, 'save']);
+
+Route::get('/chapter2', function (){
+    return 'Это первый маршрут в Части 2 домашней работы';
 });
 
+Route::get('/chapter3', function (){
+    return 'Это второй маршрут в Части 2 домашней работы';
+});
+
+Route::redirect('/chapter3', '/chapter2');
+
+Route::get('chapter4', [ChapterTwoController::class, 'chapterTwo']);
